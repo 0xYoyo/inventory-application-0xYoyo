@@ -119,7 +119,8 @@ exports.item_delete_get = asyncHandler(async (req, res, next) => {
 
 // Handle item delete on POST.
 exports.item_delete_post = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Item delete POST");
+  await Item.findByIdAndDelete(req.body.itemid);
+  res.redirect("/catalog/items");
 });
 
 // Display item update form on GET.
