@@ -4,6 +4,8 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 require("dotenv").config();
+const compression = require("compression");
+const helmet = require("helmet");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -21,6 +23,13 @@ async function main() {
   await mongoose.connect(mongoDB);
 }
 
+// Set up rate limiter: maximum of twenty requests per minute
+const RateLimit = require("express-rate-limit");
+const limiter = RateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 20,
+});
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
@@ -30,6 +39,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(compression());
+app.use(limiter);
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      "script-src": ["'self'"],
+    },
+  })
+);
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
