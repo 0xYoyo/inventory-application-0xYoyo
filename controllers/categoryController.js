@@ -131,10 +131,56 @@ exports.category_delete_post = asyncHandler(async (req, res, next) => {
 
 // Display category update form on GET.
 exports.category_update_get = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Category update GET");
+  const category = await Category.findById(req.params.id);
+
+  res.render("category_form", {
+    title: "Update category",
+    category: category,
+  });
 });
 
 // Handle category update on POST.
-exports.category_update_post = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Category update POST");
-});
+exports.category_update_post = [
+  body("name")
+    .trim()
+    .isLength({ min: 2, max: 100 })
+    .escape()
+    .withMessage("Name must be between 2-100 characters")
+    .isAlphanumeric()
+    .withMessage("Name has non-alphanumeric characters"),
+  body("description")
+    .optional({ values: "falsy" })
+    .trim()
+    .isLength({ max: 100 })
+    .escape()
+    .withMessage("Description must be less than 100 characters")
+    .isAlphanumeric()
+    .withMessage("Description has non-alphanumeric characters"),
+  asyncHandler(async (req, res, next) => {
+    // Extract errors
+    const errors = validationResult(req);
+
+    // Create category
+    const category = new Category({
+      name: req.body.name,
+      description: req.body.description,
+      _id: req.params.id,
+    });
+
+    if (!errors.isEmpty()) {
+      res.render("category_form", {
+        title: "Update category",
+        category: category,
+        errors: errors.array(),
+      });
+      return;
+    } else {
+      const updatedCategory = await Category.findByIdAndUpdate(
+        req.params.id,
+        category,
+        {}
+      );
+      res.redirect(updatedCategory.url);
+    }
+  }),
+];
