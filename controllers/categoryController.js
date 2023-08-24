@@ -18,7 +18,9 @@ exports.index = asyncHandler(async (req, res, next) => {
 
 // Display list of all categories.
 exports.category_list = asyncHandler(async (req, res, next) => {
-  const allCategories = await Category.find({}, "name").sort({ name: 1 });
+  const allCategories = await Category.find({}, "name description").sort({
+    name: 1,
+  });
   res.render("category_list", {
     title: "Category List",
     category_list: allCategories,
@@ -29,7 +31,7 @@ exports.category_list = asyncHandler(async (req, res, next) => {
 exports.category_detail = asyncHandler(async (req, res, next) => {
   const [category, allItemsInCategory] = await Promise.all([
     Category.findById(req.params.id).exec(),
-    Item.find({ category: req.params.id }, "name").exec(),
+    Item.find({ category: req.params.id }, "name description").exec(),
   ]);
 
   if (category === null) {

@@ -6,27 +6,27 @@ block content
 
     form(action="" method="POST")
         ul 
-            li 
+            li.form-group
                 label(for="name") Name: 
-                input(type="text" id="name" name="name" placeholder='Pink shirt' required= 'true' value=(item===undefined ? '' : item.name)) 
-            li 
+                input.form-control(type="text" id="name" name="name" placeholder='Pink shirt' required= 'true' value=(item===undefined ? '' : item.name)) 
+            li.form-group
                 label(for="description") Description: 
-                input(type="text" id="description" name="description" placeholder='Pink shirt with a TV series panther print' value=(item===undefined ?'' : item.description)) 
-            li 
+                input.form-control(type="text" id="description" name="description" placeholder='Pink shirt with a TV series panther print' value=(item===undefined ?'' : item.description)) 
+            li.form-group
                 label(for="price") Price: 
-                input(type="text" id="price" name="price" placeholder='47.99' required= 'true' value=(item===undefined ? '' : item.price))
-            li 
+                input.form-control(type="text" id="price" name="price" placeholder='47.99' required= 'true' value=(item===undefined ? '' : item.price))
+            li.form-group
                 label(for="numberInStock") Number In Stock: 
-                input(type="text" id="numberInStock" name="numberInStock" placeholder='8' required= 'true' value=(item===undefined ? '' : item.numberInStock))
-            li
+                input.form-control(type="text" id="numberInStock" name="numberInStock" placeholder='8' required= 'true' value=(item===undefined ? '' : item.numberInStock))
+            li.form-group
                 label Category:
                 ul
                   for category in categories
                     li(style='display: inline; padding-right:6px;')
-                      input(type='checkbox', name='category', id=category._id, value=category._id, checked=category.checked )
+                      input.checkbox-input(type='checkbox', name='category', id=category._id, value=category._id, checked=category.checked )
                       label(for=category._id) #{category.name}
 
-        button(type="submit") Submit
+        button.btn.btn-primary(type="submit") Submit
     
     if errors
         ul 

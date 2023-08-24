@@ -3,11 +3,14 @@ extends layout
 block content 
 
     h1= title 
+    div(style='margin-left:20px; margin-top:20px')  
+      h3(style='margin-bottom:16px; border-bottom: 1px solid #454545') Categories
 
-    ul 
+      dl 
         each category in category_list
-            li
+            dt
                 a(href=category.url) #{category.name}
+            dd(style='padding-bottom:6px;') #{category.description || ""}
         else 
             li There are no categories.
 

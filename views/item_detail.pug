@@ -1,10 +1,10 @@
 extends layout 
 
 block content 
-
-    h1= title
-    h3 #{item.name}
-    p #[em #{item.description}] 
+  h1= title
+  div(style='margin-left:20px;margin-top:20px')
+    h3(style='margin-bottom:16px; border-bottom: 1px solid #454545') #{item.name}
+    p #[strong Description:] #{item.description || "None"} 
     p #[strong Price:] #{item.price} $
     p #[strong In stock:] #{item.numberInStock}
     p #[strong Category:] 

@@ -3,16 +3,18 @@ extends layout
 block content 
 
     h1= title
-    h3 #{category.name}
-    p #[em #{category.description}] 
-    ul    
-        each item in category_items 
-            li 
-                a(href=item.url) #{item.name} 
-        else
-            p This category has no items.
-    hr
-    p
-      a(href=category.url+'/delete') Delete category
-    p
-      a(href=category.url+'/update') Update category    
+    div(style='margin-left:20px; margin-top:20px')  
+      h3(style='margin-bottom:16px; border-bottom: 1px solid #454545') #{category.name}
+      //- h6 #[em #{category.description}] 
+      dl    
+          each item in category_items 
+              dt 
+                  a(href=item.url) #{item.name} 
+              dd(style='padding-bottom:6px;') #{item.description}
+          else
+              p This category has no items.
+      hr
+      p
+        a(href=category.url+'/delete') Delete category
+      p
+        a(href=category.url+'/update') Update category    

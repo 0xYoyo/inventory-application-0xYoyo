@@ -2,17 +2,17 @@ extends layout
 
 block content 
 
-    h1=title
+    h1 #{title}
 
     form(action="" method="POST")
         ul 
-            li 
+            li.from-group
                 label(for="name") Name: 
-                input(type="text" id="name" name="name" placeholder='Accessories' required= 'true' value=(category===undefined ? '' : category.name)) 
-            li 
+                input.form-control(type="text" id="name" name="name" placeholder='Accessories' required= 'true' value=(category===undefined ? '' : category.name)) 
+            li.from-group
                 label(for="description") Description: 
-                input(type="text" id="description" name="description" placeholder='24 Karat gold bracelet' value=(category===undefined ? '' : category.description)) 
-        button(type="submit") Submit
+                input.form-control(type="text" id="description" name="description" placeholder='24 Karat gold bracelet' value=(category===undefined ? '' : category.description)) 
+        button.btn.btn-primary(type="submit") Submit
     
     if errors
         ul 

@@ -2,12 +2,15 @@ extends layout
 
 block content
   h1= title 
-  p Welcome to #[em Inventory], a very basic Express website for inventory management.
-
-  h1 Dynamic content
-
-  p The inventory has the following record counts:
-
-  ul
-    li #[strong Categories:] !{category_count}
-    li #[strong Items:] !{item_count}
+  p(style='margin-bottom:24px;') Welcome to #[em Inventory], an Express website for inventory management.
+  div(style='margin-left:20px; margin-top:20px')  
+    h2(style='margin-bottom:16px; border-bottom: 1px solid #454545; font-weight: 500;') Dynamic content
+    p(style='font-weight: 500; font-size:20px; margin-bottom: 24px;') The inventory has the following record counts:
+  
+    ul
+      li #[strong Categories:] !{category_count} 
+      button(style='margin-bottom:24px;').btn.btn-primary.btn-sm
+        a(style='color:#FAFAFA;' href='/catalog/categories') Visit categories
+      li #[strong Items:] !{item_count}
+      button(style='margin-bottom:24px;').btn.btn-primary.btn-sm
+        a(style='color:#FAFAFA;' href='/catalog/items') Visit items

@@ -1,10 +1,29 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root,
+html,
+body {
+  min-height: 100vh;
+  background-color: #fafafa;
+  color: #454545;
+}
+
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  font-weight: bold;
 }
 
 a {
   color: #00b7ff;
+  font-size: 1rem;
 }
 
 ul {
