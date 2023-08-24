@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Description
 
-The project consists of a dashboard for store owners' online inventory management needs.\
+The project consists of a dashboard for store owners' online inventory management needs.
 
 ## Technologies
 
